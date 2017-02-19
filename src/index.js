@@ -1,0 +1,1 @@
+['Babel', 'works', 'fine'].map(word => console.log(word));

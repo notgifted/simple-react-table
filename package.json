@@ -6,6 +6,9 @@
   "repository": "https://github.com/notgifted/simple-react-table.git",
   "author": "Vladimir Kulishin <grivoos@yandex.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack"
+  },
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
