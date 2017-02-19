@@ -9,15 +9,19 @@ export default class Table extends React.Component {
       <th key={index}>{head}</th>
     );
 
-    const dataRows = data.map((item, index) =>
-      <tr key={index}>
-        {
-          heads.map((head, index) =>
-            <td key={index}>{item[head]}</td>
-          )
-        }
-      </tr>
-    );
+    const dataRows = data.map((item, index) => {
+      const dataRowIndex = this.props.dataRowPrimaryKey ? item[this.props.dataRowPrimaryKey] : index;
+
+      return (
+        <tr key={dataRowIndex}>
+          {
+            heads.map((head, index) =>
+              <td key={index}>{item[head]}</td>
+            )
+          }
+        </tr>
+      )
+    });
 
     return (
       <table>
@@ -35,9 +39,15 @@ export default class Table extends React.Component {
 }
 
 Table.propTypes = {
-  data: React.PropTypes.array
+  data: React.PropTypes.array,
+  options: React.PropTypes.shape({
+    dataRowPrimaryKey: React.PropTypes.string
+  })
 };
 
 Table.defaultProps = {
-  data: []
+  data: [],
+  options: {
+    dataRowPrimaryKey: ''
+  }
 };
