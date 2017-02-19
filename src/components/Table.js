@@ -33,3 +33,11 @@ export default class Table extends React.Component {
     );
   }
 }
+
+Table.propTypes = {
+  data: React.PropTypes.array
+};
+
+Table.defaultProps = {
+  data: []
+};
