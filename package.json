@@ -1,0 +1,9 @@
+{
+  "name": "simple-react-table",
+  "version": "0.1.0",
+  "description": "Simple react table component",
+  "main": "index.js",
+  "repository": "https://github.com/notgifted/simple-react-table.git",
+  "author": "Vladimir Kulishin <grivoos@yandex.com>",
+  "license": "MIT"
+}
