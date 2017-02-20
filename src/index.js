@@ -17,7 +17,6 @@ const options = {
   footerRowClassName: 'simple-table-foot-row',
   footerCellClassName: 'simple-table-foot-cell',
   headers: ['index', 'name', 'email'],
-  showCaption: true,
   captionText: 'Caption simple text',
   captionClassName: 'simple-table-caption'
 };
