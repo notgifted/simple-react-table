@@ -18,15 +18,31 @@ export default class Table extends React.Component {
       footerCellClassName,
       showFooter,
       showHeader,
-      showBody
+      showBody,
+      headers
     } = this.props;
-    const heads = data.length ? Object.keys(data[0]) : [];
+
+    let heads = [];
+
+    if (headers.length) {
+      /* Boolean OR prevent mnemonic and label to be a undefined or null (allow string methods) */
+      headers.forEach(header => {
+        if (typeof header === "string") {
+          heads.push({mnemonic: header || '', label: header || ''});
+        } else if (typeof header === "object") {
+          heads.push({mnemonic: header.mnemonic || '', label: header.label || ''});
+        }
+        /* Do nothing if header has unknown type */
+      });
+    } else if (data.length) {
+      heads.push(...Object.keys(data[0]).map(field => ({mnemonic: field, label: field})));
+    }
 
     let headerElement = null;
     if (showHeader) {
       const headRow = heads.map((head, index) =>
         <th className={headCellClassName} key={index}>
-          {head}
+          {head.label}
         </th>
       );
 
@@ -43,7 +59,7 @@ export default class Table extends React.Component {
     if (showFooter) {
       const footerRow = heads.map((head, index) =>
         <td className={footerCellClassName} key={index}>
-          {footer[head]}>
+          {footer[head.mnemonic]}>
         </td>
       );
 
@@ -66,7 +82,7 @@ export default class Table extends React.Component {
             {
               heads.map((head, index) =>
                 <td className={rowCellClassName} key={index}>
-                  {item[head]}
+                  {item[head.mnemonic]}
                 </td>
               )
             }
@@ -107,7 +123,8 @@ Table.propTypes = {
   footerCellClassName: React.PropTypes.string,
   showFooter: React.PropTypes.bool,
   showHeader: React.PropTypes.bool,
-  showBody: React.PropTypes.bool
+  showBody: React.PropTypes.bool,
+  headers: React.PropTypes.array
 };
 
 Table.defaultProps = {
@@ -126,5 +143,6 @@ Table.defaultProps = {
   footerCellClassName: '',
   showFooter: false,
   showHeader: true,
-  showBody: true
+  showBody: true,
+  headers: []
 };
