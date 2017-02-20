@@ -1,0 +1,27 @@
+.simple-table {
+    background-color: #F1F8E9;
+    border-collapse: collapse;
+    font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
+.simple-table-head {
+    background-color: #8BC34A;
+}
+
+.simple-table-header {
+    text-align: center;
+    padding: 10px;
+}
+
+.simple-table-row:nth-child(odd) {
+    background-color: #DCEDC8;
+}
+
+.simple-table-row:hover {
+    background-color: #E0E0E0;
+}
+
+.simple-table-cell {
+    text-align: center;
+    padding: 5px;
+}
