@@ -39,6 +39,6 @@ const footer = {
 };
 
 ReactDOM.render(
-  <Table data={users} footer={footer} options={options}/>,
+  <Table data={users} footer={footer} {...options}/>,
   document.getElementById('content')
 );

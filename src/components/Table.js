@@ -2,56 +2,89 @@ import React from 'react';
 
 export default class Table extends React.Component {
   render() {
-    const {data, footer, options} = this.props;
+    const {
+      data,
+      footer,
+      dataRowPrimaryKey,
+      tableClassName,
+      headClassName,
+      headRowClassName,
+      headCellClassName,
+      bodyClassName,
+      rowClassName,
+      rowCellClassName,
+      footerClassName,
+      footerRowClassName,
+      footerCellClassName,
+      showFooter,
+      showHeader,
+      showBody
+    } = this.props;
     const heads = data.length ? Object.keys(data[0]) : [];
 
-    const headRow = heads.map((head, index) =>
-      <th className={options.headCellClassName} key={index}>{head}</th>
-    );
+    let headerElement = null;
+    if (showHeader) {
+      const headRow = heads.map((head, index) =>
+        <th className={headCellClassName} key={index}>
+          {head}
+        </th>
+      );
+
+      headerElement = (
+        <thead className={headClassName}>
+          <tr className={headRowClassName}>
+            {headRow}
+          </tr>
+        </thead>
+      )
+    }
 
     let footerElement = null;
-    if (options.showFooter) {
+    if (showFooter) {
       const footerRow = heads.map((head, index) =>
-        <td className={options.footerCellClassName} key={index}>
+        <td className={footerCellClassName} key={index}>
           {footer[head]}>
         </td>
       );
 
       footerElement = (
-        <tfoot className={options.footerClassName}>
-          <tr className={options.footerRowClassName}>
+        <tfoot className={footerClassName}>
+          <tr className={footerRowClassName}>
             {footerRow}
           </tr>
         </tfoot>
       );
     }
 
-    const dataRows = data.map((item, index) => {
-      const dataRowIndex = this.props.dataRowPrimaryKey ? item[this.props.dataRowPrimaryKey] : index;
+    let bodyElement = null;
+    if (showBody) {
+      const dataRows = data.map((item, index) => {
+        const dataRowIndex = dataRowPrimaryKey ? item[dataRowPrimaryKey] : index;
 
-      return (
-        <tr className={options.rowClassName} key={dataRowIndex}>
-          {
-            heads.map((head, index) =>
-              <td className={options.rowCellClassName} key={index}>
-                {item[head]}
-              </td>
-            )
-          }
-        </tr>
-      )
-    });
-
-    return (
-      <table className={options.tableClassName}>
-        <thead className={options.headClassName}>
-          <tr className={options.headRowClassName}>
-            {headRow}
+        return (
+          <tr className={rowClassName} key={dataRowIndex}>
+            {
+              heads.map((head, index) =>
+                <td className={rowCellClassName} key={index}>
+                  {item[head]}
+                </td>
+              )
+            }
           </tr>
-        </thead>
-        <tbody className={options.bodyClassName}>
+        )
+      });
+
+      bodyElement = (
+        <tbody className={bodyClassName}>
           {dataRows}
         </tbody>
+      )
+    }
+
+    return (
+      <table className={tableClassName}>
+        {headerElement}
+        {bodyElement}
         {footerElement}
       </table>
     );
@@ -61,37 +94,37 @@ export default class Table extends React.Component {
 Table.propTypes = {
   data: React.PropTypes.array,
   footer: React.PropTypes.object,
-  options: React.PropTypes.shape({
-    dataRowPrimaryKey: React.PropTypes.string,
-    tableClassName: React.PropTypes.string,
-    headClassName: React.PropTypes.string,
-    headRowClassName: React.PropTypes.string,
-    headCellClassName: React.PropTypes.string,
-    bodyClassName: React.PropTypes.string,
-    rowClassName: React.PropTypes.string,
-    rowCellClassName: React.PropTypes.string,
-    footerClassName: React.PropTypes.string,
-    footerRowClassName: React.PropTypes.string,
-    footerCellClassName: React.PropTypes.string,
-    showFooter: React.PropTypes.boolean
-  })
+  dataRowPrimaryKey: React.PropTypes.string,
+  tableClassName: React.PropTypes.string,
+  headClassName: React.PropTypes.string,
+  headRowClassName: React.PropTypes.string,
+  headCellClassName: React.PropTypes.string,
+  bodyClassName: React.PropTypes.string,
+  rowClassName: React.PropTypes.string,
+  rowCellClassName: React.PropTypes.string,
+  footerClassName: React.PropTypes.string,
+  footerRowClassName: React.PropTypes.string,
+  footerCellClassName: React.PropTypes.string,
+  showFooter: React.PropTypes.bool,
+  showHeader: React.PropTypes.bool,
+  showBody: React.PropTypes.bool
 };
 
 Table.defaultProps = {
   data: [],
   footer: {},
-  options: {
-    dataRowPrimaryKey: '',
-    tableClassName: '',
-    headClassName: '',
-    headRowClassName: '',
-    headCellClassName: '',
-    bodyClassName: '',
-    rowClassName: '',
-    rowCellClassName: '',
-    footerClassName: '',
-    footerRowClassName: '',
-    footerCellClassName: '',
-    showFooter: false,
-  }
+  dataRowPrimaryKey: '',
+  tableClassName: '',
+  headClassName: '',
+  headRowClassName: '',
+  headCellClassName: '',
+  bodyClassName: '',
+  rowClassName: '',
+  rowCellClassName: '',
+  footerClassName: '',
+  footerRowClassName: '',
+  footerCellClassName: '',
+  showFooter: false,
+  showHeader: true,
+  showBody: true
 };
