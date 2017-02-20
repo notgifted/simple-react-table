@@ -19,7 +19,8 @@ export default class Table extends React.Component {
       showFooter,
       showHeader,
       showBody,
-      headers
+      headers,
+      suppressWarnings
     } = this.props;
 
     let heads = [];
@@ -74,6 +75,13 @@ export default class Table extends React.Component {
 
     let bodyElement = null;
     if (showBody) {
+      if (!suppressWarnings && !dataRowPrimaryKey) {
+        console.warn(
+          "Table Component: \n" +
+          "You must pass item's stable, predictable, and unique key in the component as a 'dataRowPrimaryKey' option.\n" +
+          "Table can work well if the items are never reordered, but reorders will be slow."
+        );
+      }
       const dataRows = data.map((item, index) => {
         const dataRowIndex = dataRowPrimaryKey ? item[dataRowPrimaryKey] : index;
 
@@ -124,7 +132,8 @@ Table.propTypes = {
   showFooter: React.PropTypes.bool,
   showHeader: React.PropTypes.bool,
   showBody: React.PropTypes.bool,
-  headers: React.PropTypes.array
+  headers: React.PropTypes.array,
+  suppressWarnings: React.PropTypes.bool
 };
 
 Table.defaultProps = {
@@ -144,5 +153,6 @@ Table.defaultProps = {
   showFooter: false,
   showHeader: true,
   showBody: true,
-  headers: []
+  headers: [],
+  suppressWarnings: true
 };
