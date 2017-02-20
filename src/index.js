@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Table from './components/Table';
 import users from './data/users';
+import { AppContainer } from 'react-hot-loader';
 
 const options = {
   dataRowPrimaryKey: '_id',
@@ -39,7 +40,19 @@ const footer = {
   longitude: '{{floating(-180.000001, 180)}}'
 };
 
-ReactDOM.render(
-  <Table data={users} footer={footer} {...options}/>,
-  document.getElementById('content')
-);
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component data={users} footer={footer} {...options}/>
+    </AppContainer>,
+    document.getElementById('content')
+  );
+};
+
+render(Table);
+
+if (module.hot) {
+  module.hot.accept('./components/Table', () => {
+    render(Table)
+  });
+}
