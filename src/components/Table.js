@@ -20,8 +20,16 @@ export default class Table extends React.Component {
       showHeader,
       showBody,
       headers,
-      suppressWarnings
+      suppressWarnings,
+      showCaption,
+      captionText,
+      captionClassName
     } = this.props;
+
+    let captionElement = null;
+    if (showCaption) {
+      captionElement = <caption className={captionClassName}>{captionText}</caption>;
+    }
 
     let heads = [];
 
@@ -107,6 +115,7 @@ export default class Table extends React.Component {
 
     return (
       <table className={tableClassName}>
+        {captionElement}
         {headerElement}
         {bodyElement}
         {footerElement}
@@ -133,7 +142,10 @@ Table.propTypes = {
   showHeader: React.PropTypes.bool,
   showBody: React.PropTypes.bool,
   headers: React.PropTypes.array,
-  suppressWarnings: React.PropTypes.bool
+  suppressWarnings: React.PropTypes.bool,
+  showCaption: React.PropTypes.bool,
+  captionText: React.PropTypes.string,
+  captionClassName: React.PropTypes.string
 };
 
 Table.defaultProps = {
@@ -154,5 +166,8 @@ Table.defaultProps = {
   showHeader: true,
   showBody: true,
   headers: [],
-  suppressWarnings: true
+  suppressWarnings: true,
+  showCaption: false,
+  captionText: '',
+  captionClassName: ''
 };

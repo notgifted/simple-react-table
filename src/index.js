@@ -16,7 +16,10 @@ const options = {
   footerClassName: 'simple-table-foot',
   footerRowClassName: 'simple-table-foot-row',
   footerCellClassName: 'simple-table-foot-cell',
-  headers: ['index', 'name', 'email']
+  headers: ['index', 'name', 'email'],
+  showCaption: true,
+  captionText: 'Caption simple text',
+  captionClassName: 'simple-table-caption'
 };
 
 /* Use 'options.showFooter = true' to test footer */
