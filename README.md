@@ -10,6 +10,14 @@ yarn:
 npm:
 `npm install`
 
+## Build
+
+yarn:
+`yarn start`
+
+npm:
+`npm run start`
+
 ## Run
 
 yarn:
