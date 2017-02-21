@@ -18,6 +18,18 @@ yarn:
 npm:
 `npm run start-dev`
 
+## Basic usage
+
+Pass data and headers as JS array, footer as JS object and other options as string/boolean
+
+```jsx
+<Table data={users} footer={footer} {...options} />
+```
+
+```jsx
+<Table data={users} showHeader={false} />
+```
+
 ## Configuration
 
 - `data`: Array of data objects (JS Object as key-value map)
