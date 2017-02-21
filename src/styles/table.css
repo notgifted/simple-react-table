@@ -2,6 +2,7 @@
     background-color: #F1F8E9;
     border-collapse: collapse;
     font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    max-width: 50%;
 }
 
 .simple-table-head {
