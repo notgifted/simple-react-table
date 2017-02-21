@@ -1,0 +1,35 @@
+@import './table.css';
+
+body {
+    margin: 0;
+    font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
+html, body, #content, .app-container {
+    height: 100%;
+}
+
+.app-content {
+    background: #D2FF52;
+    background: -moz-linear-gradient(top, #E0FF89 0%, #91E842 100%);
+    background: -webkit-linear-gradient(top, #E0FF89 0%,#91E842 100%);
+    background: linear-gradient(to bottom, #E0FF89 0%,#91E842 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E0FF89', endColorstr='#91E842',GradientType=0 );
+}
+
+.app-content .app-header {
+    text-align: center;
+    font-size: 30px;
+    height: 100px;
+    padding-top: 50px;
+}
+
+.app-body .table-example {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 10px;
+}
+
+.app-body .table-example .simple-table {
+    margin: 10px auto;
+}
